@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Stk Quotes</title>
+     <script src="js/angular.min.js"></script>
+     <script src="js/jquery-1.7.2.min.js"></script>
+      <script src="js/stkQuoteCtrl.js"></script>
+      <style>
+        th{
+          margin:50px;
+          padding:20px;
+          border-style: solid;
+          border-width: 1px;
+          color:blue;
+          font-weight: bolder;
+        }
+        td{
+          margin:50px;
+          padding:20px;
+          border-style: solid;
+          border-width: 1px;
+
+        }
+        #high{
+          color:green;
+        }
+        #low{
+          color:red;
+        }
+        .fromInput{
+          margin:10px;
+          padding:5px;
+        }
+      </style>
+  </head>
+  <body ng-app="myApp"><center>
+    <div ng-controller="Ctrl">
+      <h2>Stock prices for: {{symbol}}</h2>
+      <!--Start of Input Form!-->
+        <div class="fromInput">
+          <label for="symbol">Stock symbol:</label>
+            <input name="symbol" type="text" ng-model="symbol" ng-change="getData()">
+          <label for="startDate">Start date:</label>
+            <input name="startDate" type="text" ng-model="startDate" ng-change="getData()">
+          <label for="endDate">End date:</label>
+            <input name="endDate" type="text" ng-model="endDate" ng-change="getData()">
+          <!--<label for="method">Lookup method</label>
+            <select ng-model="method" ng-options="o.value for o in options"></select>!-->
+        </div>
+      <!--End of Input Form!-->
+      <table>
+        <thead>
+          <th>Date</th>
+          <th>Open</th>
+          <th id="high">High</th>
+          <th id="low">Low</th>
+          <th>Close</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items">
+            <td>{{item.Date}}</td>
+            <td>{{item.Open | currency}}</td>
+            <td>{{item.High | currency}}</td>
+            <td>{{item.Low  | currency}}</td>
+            <td>{{item.Close| currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div></center>
+  </body>
+</html>
